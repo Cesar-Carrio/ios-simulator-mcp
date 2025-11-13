@@ -1,0 +1,13 @@
+# Screenshot directory
+.emcap-screenshots/
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+

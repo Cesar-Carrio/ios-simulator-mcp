@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "ios-simulator": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@emcap/ios-simulator-mcp"
+      ],
+      "env": {},
+      "disabled": false
+    }
+  }
+}
+

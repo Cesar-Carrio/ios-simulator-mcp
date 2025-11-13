@@ -1,0 +1,33 @@
+{
+  "name": "emcap",
+  "version": "1.0.0",
+  "description": "iOS Simulator Screenshot MCP Extension for Cursor - enables AI to see your iOS simulator",
+  "private": true,
+  "scripts": {
+    "install-mcp": "./install-mcp.sh",
+    "build-mcp": "cd mcp-server && npm run build",
+    "dev-mcp": "cd mcp-server && npm run dev",
+    "test-package": "./test-package.sh",
+    "publish-mcp": "cd mcp-server && npm publish --access public",
+    "verify": "./verify-installation.sh"
+  },
+  "keywords": [
+    "cursor",
+    "mcp",
+    "ios-simulator",
+    "react-native",
+    "screenshots",
+    "ai-extension"
+  ],
+  "author": "emCap",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emcap/ios-simulator-mcp.git"
+  },
+  "homepage": "https://github.com/emcap/ios-simulator-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/emcap/ios-simulator-mcp/issues"
+  }
+}
+

@@ -1,0 +1,16 @@
+src/
+tsconfig.json
+*.ts
+!*.d.ts
+node_modules/
+.DS_Store
+*.log
+.env
+.env.*
+test/
+tests/
+__tests__/
+*.test.*
+*.spec.*
+coverage/
+.nyc_output/

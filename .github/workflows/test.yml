@@ -1,0 +1,54 @@
+name: Test
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        working-directory: ./mcp-server
+        run: npm ci
+
+      - name: Build TypeScript
+        working-directory: ./mcp-server
+        run: npm run build
+
+      - name: Check if build succeeded
+        working-directory: ./mcp-server
+        run: |
+          if [ ! -f "dist/index.js" ]; then
+            echo "❌ Build failed - dist/index.js not found"
+            exit 1
+          fi
+          echo "✅ Build successful"
+
+      - name: Run tests (if any)
+        working-directory: ./mcp-server
+        run: npm test --if-present
+
+      - name: Verify xcrun simctl available
+        run: |
+          if command -v xcrun &> /dev/null; then
+            echo "✅ xcrun available"
+            xcrun simctl list devices --json > /dev/null
+          else
+            echo "⚠️ xcrun not available (expected on CI)"
+          fi
