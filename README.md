@@ -1,7 +1,9 @@
 # iOS Simulator MCP Extension for Cursor
 
-[![npm version](https://img.shields.io/npm/v/@emcap/ios-simulator-mcp)](https://www.npmjs.com/package/@emcap/ios-simulator-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Status: Pre-Release](https://img.shields.io/badge/Status-Pre--Release-orange.svg)]()
+
+> **Note:** This package is currently in development and not yet published to npm. See installation instructions below.
 
 An MCP (Model Context Protocol) server that enables Cursor's AI to "see" your iOS simulator. This extension automatically captures screenshots when you make UI changes to your React Native app and exposes them to Cursor's AI for visual analysis and feedback.
 
@@ -9,15 +11,20 @@ An MCP (Model Context Protocol) server that enables Cursor's AI to "see" your iO
 
 ### Installation
 
-**Option 1: Using npx (Recommended - No installation needed)**
+**Current Installation Method (Development):**
 
-Just add the configuration to Cursor and it works automatically!
-
-**Option 2: Global installation**
-
+1. Clone this repository:
 ```bash
-npm install -g @emcap/ios-simulator-mcp
+git clone https://github.com/emcap/ios-simulator-mcp.git
+cd ios-simulator-mcp
 ```
+
+2. Install and build:
+```bash
+./install-mcp.sh
+```
+
+This will install dependencies and build the MCP server.
 
 ### Configuration
 
@@ -25,24 +32,41 @@ Add to your Cursor settings:
 
 **Path:** `Cursor → Settings (⌘,) → Features → Model Context Protocol`
 
-**Using npx (recommended):**
+**Configuration:**
+```json
+{
+  "mcpServers": {
+    "ios-simulator": {
+      "command": "node",
+      "args": ["/absolute/path/to/emCap/mcp-server/dist/index.js"]
+    }
+  }
+}
+```
+
+> **Important:** Replace `/absolute/path/to/emCap` with the actual absolute path where you cloned this repository.
+
+---
+
+### Future: npm Installation (Coming Soon)
+
+Once published to npm, you'll be able to install via:
+
+```bash
+# Using npx (no installation needed)
+npx @emcap/ios-simulator-mcp
+
+# Or install globally
+npm install -g @emcap/ios-simulator-mcp
+```
+
+And use simpler configuration:
 ```json
 {
   "mcpServers": {
     "ios-simulator": {
       "command": "npx",
       "args": ["-y", "@emcap/ios-simulator-mcp"]
-    }
-  }
-}
-```
-
-**Using global install:**
-```json
-{
-  "mcpServers": {
-    "ios-simulator": {
-      "command": "ios-simulator-mcp"
     }
   }
 }
@@ -80,36 +104,20 @@ That's it! 🎉
 
 ## 📖 Documentation
 
-- [Quick Start Guide](QUICKSTART.md)
-- [Usage Examples](EXAMPLES.md)
-- [Architecture Overview](ARCHITECTURE.md)
-- [Publishing Guide](PUBLISHING.md) (for maintainers)
+- [Quick Start Guide](docs/QUICKSTART.md)
+- [Usage Examples](docs/EXAMPLES.md)
+- [Architecture Overview](docs/ARCHITECTURE.md)
+- [Publishing Guide](docs/PUBLISHING.md) (for maintainers - package not yet published)
 
-## 🛠️ Development Installation
+## 🛠️ Development & Contributing
 
-If you want to contribute or develop locally:
+If you want to contribute or make local modifications:
 
-```bash
-# Clone the repository
-git clone https://github.com/emcap/ios-simulator-mcp.git
-cd emCap
+1. Edit source files in `mcp-server/src/`
+2. Rebuild: `npm run build-mcp` (from project root) or `npm run build` (from mcp-server directory)
+3. Restart Cursor to reload the MCP server
 
-# Install and build
-./install-mcp.sh
-```
-
-Then configure Cursor to use the local build:
-
-```json
-{
-  "mcpServers": {
-    "ios-simulator": {
-      "command": "node",
-      "args": ["/absolute/path/to/emCap/mcp-server/dist/index.js"]
-    }
-  }
-}
-```
+The MCP server will use your local changes after rebuilding.
 
 ## Usage
 
@@ -355,9 +363,12 @@ npm run ios
 
 **Solution**:
 1. Check that the server is built: `mcp-server/dist/index.js` should exist
-2. Verify the path in Cursor's MCP config is correct (use absolute path)
-3. Restart Cursor after configuration changes
-4. Check Cursor's MCP logs for errors
+   - If not, run: `./install-mcp.sh` or `cd mcp-server && npm run build`
+2. Verify the path in Cursor's MCP config is correct (must be absolute path)
+   - Use full path like: `/Users/username/path/to/emCap/mcp-server/dist/index.js`
+3. Check Node.js version: `node --version` (requires 18+)
+4. Restart Cursor after configuration changes
+5. Check Cursor's MCP logs for detailed errors (View → Output → select "ios-simulator")
 
 ### Screenshots directory filling up
 
@@ -419,11 +430,22 @@ Navigate through screens and capture:
 
 ## Contributing
 
-This is a custom MCP server for the emCap project. To modify:
+Contributions are welcome! To contribute:
 
-1. Edit source files in `mcp-server/src/`
-2. Rebuild: `npm run build`
-3. Restart Cursor to reload the MCP server
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Make your changes in `mcp-server/src/`
+4. Rebuild: `npm run build-mcp` (from project root) or `cd mcp-server && npm run build`
+5. Test your changes by restarting Cursor
+6. Commit your changes: `git commit -am 'Add some feature'`
+7. Push to the branch: `git push origin feature/your-feature`
+8. Submit a pull request
+
+Please ensure your code:
+- Follows the existing code style
+- Includes appropriate type definitions
+- Has been tested with a real React Native project
+- Updates documentation if needed
 
 ## License
 

@@ -7,12 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Status
+- Package in development, not yet published to npm
+- Documentation updated to reflect pre-release status
+- Local installation via git clone is the current method
+
 ### Added
 - Initial release preparation
-- npm publishing setup
-- GitHub Actions workflows
+- npm publishing setup (not yet executed)
+- GitHub Actions workflows (ready for future use)
+- Pre-release warnings in all documentation
+- Clear installation instructions for local development
 
-## [1.0.0] - 2024-11-13
+## [1.0.0] - Not Yet Released
 
 ### Added
 - Initial release of iOS Simulator MCP Server
@@ -41,6 +48,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Publishing guide for maintainers
 - Troubleshooting section
 
-[Unreleased]: https://github.com/emcap/ios-simulator-mcp/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/emcap/ios-simulator-mcp/releases/tag/v1.0.0
+[Unreleased]: https://github.com/emcap/ios-simulator-mcp/commits/main
 

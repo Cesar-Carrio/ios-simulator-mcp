@@ -1,9 +1,11 @@
 # iOS Simulator MCP for Cursor
 
-[![npm version](https://img.shields.io/npm/v/@emcap/ios-simulator-mcp)](https://www.npmjs.com/package/@emcap/ios-simulator-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Status: Pre-Release](https://img.shields.io/badge/Status-Pre--Release-orange.svg)]()
 
 > Enable Cursor's AI to "see" your iOS simulator and provide visual feedback on your React Native app.
+
+> **Note:** This package is currently in development and not yet published to npm.
 
 ## ✨ Features
 
@@ -18,12 +20,11 @@
 
 ### Installation
 
-```bash
-# Install globally (recommended)
-npm install -g @emcap/ios-simulator-mcp
+**Current Method (Development):**
 
-# Or use with npx (no installation)
-npx @emcap/ios-simulator-mcp
+```bash
+# From the project root
+./install-mcp.sh
 ```
 
 ### Configuration
@@ -32,24 +33,41 @@ Add to your Cursor settings:
 
 **Settings Path:** `Cursor → Settings (⌘,) → Features → Model Context Protocol`
 
-**Using npx (no install needed):**
+**Current Configuration:**
+```json
+{
+  "mcpServers": {
+    "ios-simulator": {
+      "command": "node",
+      "args": ["/absolute/path/to/emCap/mcp-server/dist/index.js"]
+    }
+  }
+}
+```
+
+Replace `/absolute/path/to/emCap` with your actual installation path.
+
+---
+
+### Future: npm Installation (Coming Soon)
+
+Once published, installation will be much simpler:
+
+```bash
+# Using npx (no installation needed)
+npx @emcap/ios-simulator-mcp
+
+# Or install globally
+npm install -g @emcap/ios-simulator-mcp
+```
+
+And configuration:
 ```json
 {
   "mcpServers": {
     "ios-simulator": {
       "command": "npx",
       "args": ["-y", "@emcap/ios-simulator-mcp"]
-    }
-  }
-}
-```
-
-**Using global install:**
-```json
-{
-  "mcpServers": {
-    "ios-simulator": {
-      "command": "ios-simulator-mcp"
     }
   }
 }
@@ -119,6 +137,8 @@ Get AI insights on layout:
 
 ## 🔧 CLI Commands
 
+> **Note:** These commands will be available after npm publishing. For now, use the MCP tools via Cursor's AI.
+
 ```bash
 # Show help
 ios-simulator-mcp --help
@@ -132,6 +152,9 @@ ios-simulator-mcp --config
 # Check simulator status
 ios-simulator-mcp --check
 ```
+
+**Current Alternative:** 
+Ask Cursor's AI to check status: `"Is the iOS simulator running?"`
 
 ## 🏗️ How It Works
 
@@ -171,22 +194,26 @@ npm run ios
 
 **Check:**
 1. Auto-capture is enabled (ask AI: "Is auto-capture enabled?")
-2. Simulator is running (run: `ios-simulator-mcp --check`)
+2. Simulator is running (ask AI: "Is the iOS simulator running?")
 3. You're editing UI files (.tsx, .jsx in components/screens directories)
+4. File watcher is running (ask AI: "What's the watcher status?")
 
 ### MCP server not connecting
 
 **Solution:**
-1. Verify the server is installed: `which ios-simulator-mcp`
-2. Check Cursor's MCP configuration is correct
-3. Restart Cursor after configuration changes
-4. Check Cursor's MCP logs for errors
+1. Verify the server is built: Check that `mcp-server/dist/index.js` exists
+2. Verify the absolute path in Cursor's MCP configuration is correct
+3. Check Node.js version: `node --version` (requires 18+)
+4. Restart Cursor after configuration changes
+5. Check Cursor's MCP logs for errors (View → Output → select "ios-simulator")
 
 ## 📚 Documentation
 
 - [Complete Documentation](https://github.com/emcap/ios-simulator-mcp)
-- [Usage Examples](https://github.com/emcap/ios-simulator-mcp/blob/main/EXAMPLES.md)
-- [Architecture Guide](https://github.com/emcap/ios-simulator-mcp/blob/main/ARCHITECTURE.md)
+- [Quick Start Guide](https://github.com/emcap/ios-simulator-mcp/blob/main/docs/QUICKSTART.md)
+- [Usage Examples](https://github.com/emcap/ios-simulator-mcp/blob/main/docs/EXAMPLES.md)
+- [Architecture Guide](https://github.com/emcap/ios-simulator-mcp/blob/main/docs/ARCHITECTURE.md)
+- [Publishing Guide](https://github.com/emcap/ios-simulator-mcp/blob/main/docs/PUBLISHING.md) (for maintainers)
 
 ## 🤝 Contributing
 

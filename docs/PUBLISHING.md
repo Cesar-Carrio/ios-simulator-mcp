@@ -1,13 +1,46 @@
 # Publishing Guide
 
+> **Status:** This package has NOT been published to npm yet. This guide is for when we're ready to publish.
+
 How to publish `@emcap/ios-simulator-mcp` to npm.
 
-## Prerequisites
+## Before First Publish - Checklist
 
 - [ ] npm account created at [npmjs.com](https://www.npmjs.com)
 - [ ] Access to publish to `@emcap` scope (or use your own scope)
-- [ ] GitHub repository created
+- [ ] GitHub repository is public and accessible
 - [ ] All changes committed and pushed
+- [ ] Package builds successfully (`npm run build`)
+- [ ] All documentation reviewed and updated
+- [ ] Version number is correct in package.json
+- [ ] **Update all README files to remove pre-release warnings**
+- [ ] **Update installation sections to make npm the primary method**
+- [ ] **Remove or update "Coming Soon" sections**
+- [ ] **Update badges to use live npm links**
+
+### Documentation Updates Required Before Publishing
+
+You'll need to update these files to reflect npm availability:
+
+1. **`/README.md`**:
+   - Remove "Status: Pre-Release" badge
+   - Add live npm version badge
+   - Move local installation to "Development" section
+   - Make npm/npx the primary installation method
+
+2. **`/docs/QUICKSTART.md`**:
+   - Make npm installation the main method
+   - Move local installation to "Development" section
+   - Remove "Coming Soon" sections
+
+3. **`/mcp-server/README.md`**:
+   - Remove "Status: Pre-Release" badge
+   - Add live npm version badge
+   - Make npm/npx the primary installation method
+   - Remove CLI commands disclaimer
+
+4. **This file (`PUBLISHING.md`)**:
+   - Remove the "NOT published" warning at the top
 
 ## One-Time Setup
 
